@@ -1,0 +1,39 @@
+html{
+    background-color: rgb(36, 34, 71);
+}
+
+h1{
+    margin-top: 6rem;
+    font-family: "Luckiest Guy", sans-serif;
+    font-size: 7rem;
+    font-weight: 100;
+    color: rgb(160, 17, 196);
+    text-align: center;
+}   
+
+h2{
+    font-family: "Preahvihear", sans-serif;
+    
+}
+
+h1,h2{
+    color: rgb(17, 196, 98);
+}
+
+.container{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    height: 200px;
+}

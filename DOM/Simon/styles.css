@@ -1,0 +1,42 @@
+html{
+    background-color: rgb(37, 32, 32);
+    font-family: "Aldrich",sans-serif;
+    font-size: 3rem;
+    color: white;
+}
+
+.container > button{
+    border-radius: 25%;
+    border: 5px solid black;
+}
+
+.red{
+    background-color: #F53D79;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.blue{
+    background-color: #1744c0;
+}
+
+.green{
+    background-color: green;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.container{
+    display: grid;
+    gap: 50px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 200px 200px;
+}

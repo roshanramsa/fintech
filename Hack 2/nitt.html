@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input and Output Web Page</title>
+    
+    <style>
+        /* Style for the entire page */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url(./im3.jpg); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card{
+            display: flex;
+            gap: 200px   ;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        /* Container to center everything */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            margin-top: 100px;
+            border-radius: 10px;
+            height: 400px;
+            width: 300px;
+        }
+
+        /* Input and button styles */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            height: 50px;
+            width: 100px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Style for the output area */
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div><div class="container"></div></div>
+        <button></button>
+        <div><div class="container"></div></div>
+    </div>
+
+    <script>
+        function submitInput() {
+            // Get the value from the input field
+            const input = document.getElementById('userInput').value;
+
+            // Display the input in the output div
+            document.getElementById('output').innerText = 'You entered: ' + input;
+
+            // Clear the input field after submission
+            document.getElementById('userInput').value = '';
+        }
+    </script>
+
+</body>
+</html>

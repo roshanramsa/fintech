@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./im3.jpg); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Style for the card layout */
+.card {
+    display: flex;
+    gap: 50px; /* Reduced gap between elements */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container style */
+.container {
+    background-color: rgba(49, 21, 21, 0.8); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Input and button styles */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Style for the output area */
+#output {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 18px;
+    color: #333;
+    width: 100%;
+    text-align: center;
+    min-height: 50px;
+}

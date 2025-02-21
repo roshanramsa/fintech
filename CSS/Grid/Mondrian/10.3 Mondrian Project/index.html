@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+
+    body{
+      border: 10px solid black;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container{
+      border: 10px solid black;
+      background-color: black;
+      height: 632px;
+      width: 585px;
+      display: grid;
+      border-width: 9px;
+      grid-template-columns: 68px 110px 7px 144px 76px 76px 50px;
+      grid-template-rows: 108px 140px 140px 68px 61px 70px;
+      gap: 9px;
+    }
+
+    .white{
+      background: #F0F1EC;
+    }
+
+    .grey{
+      background: #dfe0da;
+    }
+
+    .yellow{
+      background: #F9D01E;
+    }
+    
+    .red{
+      background: #E72F24;
+    }
+
+    .blue{
+      background: #004592;
+    }
+
+    .black{
+      background: black;
+    }
+
+    .grey.one{
+      grid-column: span 2;
+    }
+
+    .white.one{
+      grid-column: span 2;
+    }
+
+    .yellow.one{
+      grid-column: span 2;
+    }
+
+    .red.one{
+      grid-column: span 3;
+      grid-row: span 2
+    }
+
+    .yellow.two{
+      grid-column: span 2;
+    }
+
+    .grey.three{
+      grid-row: span 3
+    }
+
+    .white.three{
+      grid-row: span 2
+    }
+
+    .black.one{
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .white.six{
+      grid-column: span 2
+    }
+
+    .yellow.three{
+      grid-row: span 2;
+    }
+
+    .blue{
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .red.two{
+      grid-row: span 2;
+    }
+
+    .white.eight{
+      grid-column: span 2;
+    }
+
+
+
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+   <div class="container">
+    <div class="grey one"></div>
+    <div class="white one"></div>
+    <div class="yellow one"></div>
+    <div class="grey two"></div>
+    <div class="white two"></div>
+    <div class="red one"></div>
+    <div class="yellow two"></div>
+    <div class="grey three"></div>
+    <div class="white three"></div>
+    <div class="white four"></div>
+    <div class="white five"></div>
+    <div class="black one"></div>
+    <div class="grey four"></div>
+    <div class="white six"></div>
+    <div class="yellow three"></div>
+    <div class="white seven"></div>
+    <div class="blue"></div>
+    <div class="red two"></div>
+    <div class="white eight"></div>
+    <div class="black two"></div>
+   </div>
+</body>
+
+</html>
