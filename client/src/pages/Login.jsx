@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function SignupPage() {
+const SignupPage = () => {
     const [lives, setLives] = useState(() => parseInt(localStorage.getItem("health")) || 3);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -12,6 +12,8 @@ function SignupPage() {
     const [loginFlag, setLoginFlag] = useState(() => JSON.parse(localStorage.getItem("loginFlag")) || false);
 
     const navigate = useNavigate();
+    const [nav, setNav] = useState(false);
+    const [again, setAgain] = useState(false);
 
     useEffect(() => {
         localStorage.setItem("health", lives);
@@ -34,7 +36,7 @@ function SignupPage() {
             const response = await fetch("http://localhost:3000/generate", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ prompt: "Advise the user on online security best practices." }),
+                body: JSON.stringify({ prompt: "Congratulate the user on successfully finding the correct link. Highlight the legitimacy of the site by pointing out the logo and the amount of detail and the email extension (pragyan.org). Do this in 8-9 sentences" }),
             });
             const data = await response.json();
             setAiMessage(data.response || "AI says: Stay safe online!");
@@ -55,7 +57,9 @@ function SignupPage() {
         fetchAIResponse();
         setLoginFlag(true);
         alert("Signup Submitted!");
-        navigate("/Email");
+        const timeout = setTimeout(() => {
+            navigate("/email")
+        }, 10000)
     };
 
     return (
@@ -113,7 +117,7 @@ function SignupPage() {
             </div>
             {showAiBox && (
                 <div className="absolute right-10 top-20 bg-gray-800 p-5 rounded-xl shadow-lg w-80 min-h-[100px] flex flex-col items-center justify-center">
-                    <h3 className="text-xl font-bold text-red-400">AI Warning</h3>
+                    <h3 className="text-xl font-bold text-blue-400">AI Advice</h3>
                     <p className="text-white mt-2 text-center">{isFetching ? "Waiting for AI response..." : aiMessage}</p>
                 </div>
             )}

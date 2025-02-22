@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-function SignupPage() {
-    const [lives, setLives] = useState(() => parseInt(localStorage.getItem("health")) || 3);
+const SignupPage = ({lives, setLives}) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -34,19 +33,10 @@ function SignupPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (lives > 0) {
-            setLives((prev) => {
-                const newLives = prev - 1;
-                if (newLives < prev) {
-                    fetchAIResponse();
-                }
-                return newLives;
-            });
-            alert(`Login Submitted! Lives left: ${lives - 1}`);
-        } else {
-            alert("No more lives left!");
+        fetchAIResponse()
+        setLives((prev) => prev - 1)
+        alert(`Lives remaining: ${lives - 1}`)
         }
-    };
 
     return (
         <div className="flex items-start justify-center h-screen bg-gradient-to-r from-pink-900 to-blue-900 bg-opacity-1">
@@ -80,7 +70,7 @@ function SignupPage() {
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full p-3 border border-slate-800 rounded-lg mt-1 focus:ring-2 focus:ring-green-100 focus:outline-none"
+                            className="w-full p-3 border text-white border-slate-800 rounded-lg mt-1 focus:ring-2 focus:ring-green-100 focus:outline-none"
                             required
                         />
                     </div>

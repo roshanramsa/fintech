@@ -39,6 +39,7 @@ const DynamicPlaceholder = () => {
 };
 
 const App = () => {
+  const [lives, setLives] = useState(3);
   const [index, setIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -62,41 +63,18 @@ const App = () => {
   }, [index]);
 
   useEffect(() => {
-    let lives = localStorage.getItem("health"); 
     if (lives < 1) {
       localStorage.clear();
       window.location.reload();
-      localStorage.setItem('health', 3)
-      location.href = "http://localhost:5173/email"
+      setLives(3)
+      location.href = "http://localhost:5173"
     }
   })
-
-  const handleNextDialogue = () => {
-    setFade(false); 
-
-    setTimeout(() => {
-      setIndex((prev) => (prev < dialogues.length - 1 ? prev + 1 : 0));
-      if (index == dialogues.length - 1) {
-        setDialogue(false)  
-      }
-      setFade(true);
-    }, 500);
-  };
 
   return (
     <>
       <BrowserRouter>
         <div className='bg-pink-300 h-screen w-screen'>
-          
-          <div className='flex gap-5 absolute z-0'>
-            {Array.from({ length: 20 }, (_, i) => (
-              <div key={i} className='flex flex-col gap-2'>
-                {Array.from({ length: 4 }, (_, j) => (
-                  <img key={j} src={objects[j]} alt={`Object ${j}`} height={30} width={30} />
-                ))}
-              </div>
-            ))}
-          </div>
 
           <div className='flex gap-1 items-center px-1 absolute z-[1] w-full'>
             <div className='w-[32px] bg-pink-200 h-[30px] rounded-[30%] hover:bg-pink-100'></div>
@@ -116,10 +94,10 @@ const App = () => {
             </div>
               <Routes>
                 <Route path='/' element={<Home />}/>
-                <Route path='/Amazmom' element={<Amazmom />}/>
+                <Route path='/Amazmom' element={<Amazmom lives={lives} setLives={setLives}/>}/>
                 <Route path='/Email' element={<Email />}/>
                 <Route path='/Login' element={<LoginPage />}/>
-                <Route path='/FakeLogin' element={<ScamLoginPage />}/>
+                <Route path='/FakeLogin' element={<ScamLoginPage lives={lives} setLives={setLives}/>}/>
                 <Route path='/Romance' element={<RomanceScamChatbot />}></Route>
               </Routes>
           </div>
