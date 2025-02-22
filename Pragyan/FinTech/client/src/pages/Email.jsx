@@ -40,43 +40,51 @@ const defaultEmailCategories = {
   ]
 };
 
-const deepCompareEmails = (stored, defaults) => {
-  if (!stored) return false;
-  
-  try {
-    const parsedStored = JSON.parse(stored);
-    
-    return Object.keys(defaults).every((category) =>
-      parsedStored[category]?.every((email, index) => {
-        const defaultEmail = defaults[category][index];
-        return (
-          email.id === defaultEmail.id &&
-          email.sender === defaultEmail.sender &&
-          email.email === defaultEmail.email &&
-          email.subject === defaultEmail.subject &&
-          email.content === defaultEmail.content &&
-          email.starred === defaultEmail.starred
-        ); // Ignoring "read" status
-      })
-    );
-  } catch {
-    return false;
-  }
-};
-
 function Email() {
   const [selectedEmail, setSelectedEmail] = useState(null);
   const [activeTab, setActiveTab] = useState("primary");
   const [emails, setEmails] = useState(() => {
     const storedEmails = localStorage.getItem("emails");
-
-    if (deepCompareEmails(storedEmails, defaultEmailCategories)) {
-      return JSON.parse(storedEmails);
-    } else {
-      localStorage.setItem("emails", JSON.stringify(defaultEmailCategories));
-      return defaultEmailCategories;
-    }
+    return storedEmails ? JSON.parse(storedEmails) : defaultEmailCategories;
   });
+  const [loginFlag, setLoginFlag] = useState(() => JSON.parse(localStorage.getItem("loginFlag")) || false);
+
+  useEffect(() => {
+    if (loginFlag) {
+      addExtraEmails();
+      setLoginFlag(false);
+      localStorage.setItem("loginFlag", JSON.stringify(false));
+    }
+  }, [loginFlag]);
+
+  const addExtraEmails = () => {
+    const extraEmails = [
+      {
+        id: 11,
+        sender: "Security Team",
+        email: "security@pragyan.org",
+        subject: "Suspicious Activity Detected",
+        content: "We noticed a login attempt from a new device. If this wasn't you, please secure your account.",
+        starred: false,
+        read: false
+      },
+      {
+        id: 12,
+        sender: "Admin",
+        email: "admin@pragyan.org",
+        subject: "Account Security Notice",
+        content: "Your account has been flagged for unusual activity. Click here to review recent logins.",
+        starred: false,
+        read: false
+      }
+    ];
+    const updatedEmails = {
+      ...emails,
+      primary: [...emails.primary, ...extraEmails]
+    };
+    setEmails(updatedEmails);
+    localStorage.setItem("emails", JSON.stringify(updatedEmails));
+  };
 
   useEffect(() => {
     localStorage.setItem("emails", JSON.stringify(emails));
@@ -112,7 +120,6 @@ function Email() {
           ))}
         </ul>
       </div>
-
       <div className="mt-2 flex-1 flex flex-col bg-white/30 backdrop-blur-md shadow-lg rounded-lg">
         <div className="flex-1 p-4 overflow-auto">
           <h2 className="text-xl font-bold mb-4 capitalize text-slate-900/90">{activeTab}</h2>
@@ -128,7 +135,6 @@ function Email() {
           ))}
         </div>
       </div>
-
       <div className="mt-2 w-1/3 p-6 ml-1 bg-white/30 backdrop-blur-xl shadow-lg border border-gray-300 rounded-lg">
         {selectedEmail ? (
           <div>

@@ -90,19 +90,6 @@ const App = () => {
                 <Route path='/Login' element={<LoginPage></LoginPage>}/>
                 <Route path='/FakeLogin' element={<ScamLoginPage></ScamLoginPage>}/>
               </Routes>
-              <div className="h-full w-full" onClick={handleNextDialogue}>
-                <div className="flex h-full w-full justify-center">
-                  <div className={`h-[20%] w-[90%] bg-pink-100 rounded-2xl absolute bottom-0  ${dialogue ? "" : "hidden"}`}>
-                    <p
-                      className={`text-2xl font-poppins p-5 transition-opacity duration-200 ${
-                        fade ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      {displayText}
-                    </p>
-                  </div>
-                </div>
-              </div>
           </div>
         </div>
       </BrowserRouter>
