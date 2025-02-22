@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sixtyfour&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+@property --border-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@property --y-movement {
+    syntax: '<value>';
+    inherits: false;
+    initial-value: 0;
+}
+
+@theme {
+    --font-poppins: Poppins, sans-serif;
+
+    --font-roboto: Roboto, sans-serif;
+
+    --animate-border-rotate: border-rotate 10s linear infinite;
+
+    --animate-gradient-shift: gradientShift 3s linear;
+
+    @keyframes border-rotate {
+        100% {
+            --border-angle: 360deg;
+        }
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+}
+
+@layer components {
+    .bg-conic-custom {
+        --tw-gradient-position: in oklch decreasing hue from var(--border-angle);
+        background-image: conic-gradient(var(--tw-gradient-stops));
+    }
+    
+    .hover-text-gradient {
+        background-size: 300% auto;
+        transition: background-position 0.8s ease-in-out, color 0.5s ease-in-out;
+        color: gray;
+      }
+    
+    .hover-text-gradient:hover {
+        background-image: linear-gradient(90deg, #15d783, #0077b6, #12e4c8);
+        color: transparent;
+        animation: gradientMove 3s linear infinite;
+      }
+    
+    @keyframes gradientMove {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+}
+
+@layer utilities {
+    .input {
+        @apply bg-white border flex-none rounded-md border-gray-400 py-[8px] px-3;
+    }
+}
