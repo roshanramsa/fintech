@@ -1,29 +1,8 @@
 html{
-    background-color: rgb(37, 32, 32);
-    font-family: "Aldrich",sans-serif;
+    background-color: #000000;
+    font-family: "Playwrite GB S",sans-serif;
     font-size: 3rem;
-    color: white;
-}
-
-.container > button{
-    border-radius: 25%;
-    border: 5px solid black;
-}
-
-.red{
-    background-color: #F53D79;
-}
-
-.yellow{
-    background-color: yellow;
-}
-
-.blue{
-    background-color: #1744c0;
-}
-
-.green{
-    background-color: green;
+    color: rgb(238, 238, 238);
 }
 
 body{
@@ -31,12 +10,53 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 100px;
 }
 
 .container{
     display: grid;
-    gap: 50px;
-    grid-template-columns: 200px 200px;
     grid-template-rows: 200px 200px;
+    grid-template-columns: 200px 200px;
+    gap: 10px;
+}
+
+.exclamation{
+    background-image: linear-gradient(20deg, indigo, violet, hwb(120 4% 11%),hwb(183 2% 3%),hwb(0 0% 0% / 0.733),hwb(54 0% 1%));
+    background-clip: text;
+    color: transparent;
+}
+
+h1{
+    font-size: 1.3rem;
+    margin-bottom: 0px;
+}
+
+h2{
+    font-size: 0.7rem;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+button{
+    border-radius: 25%;
+    border: #a3acb9 solid 4px;
+}
+
+.yellow{
+    background-color: hwb(54 0% 1%);
+}
+
+.blue{
+    background-color: hwb(214 5% 12%);
+}
+
+.red{
+    background-color: hwb(0 18% 3% / 0.733);
+}
+
+.green{
+    background-color: hwb(125 4% 11%);
+}
+
+.veil{
+    opacity: 70%;
 }
