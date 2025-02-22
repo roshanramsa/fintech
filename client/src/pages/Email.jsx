@@ -48,13 +48,66 @@ function Email() {
     const storedEmails = localStorage.getItem("emails");
     return storedEmails ? JSON.parse(storedEmails) : defaultEmailCategories;
   });
+  const [loginFlag, setLoginFlag] = useState(() => JSON.parse(localStorage.getItem("loginFlag")) || false);
+
   const [showPopup, setShowPopup] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (emails.primary.some(email => email.id === 13 && email.read)) {
       setShowPopup(true);
     }
+  }, [emails]);
+
+  useEffect(() => {
+    if (loginFlag) {
+      addExtraEmails();
+      setLoginFlag(false);
+      localStorage.setItem("loginFlag", JSON.stringify(false));
+    }
+  }, [loginFlag]);
+
+  const addExtraEmails = () => {
+    const extraEmails = [
+      {
+        id: 11,
+        sender: "Security Team",
+        email: "security@pragyan.org",
+        subject: "Suspicious Activity Detected",
+        content: "We noticed a login attempt from a new device. If this wasn't you, please secure your account.",
+        starred: false,
+        read: false
+      },
+      {
+        id: 12,
+        sender: "Admin",
+        email: "admin@pragyan.org",
+        subject: "Account Security Notice",
+        content: "Your account has been flagged for unusual activity. Click here to review recent logins.",
+        starred: false,
+        read: false
+      },
+      {
+        id: 13,
+        sender: "Pragyan Team",
+        email: "admin@pragyan.org",
+        subject: "BUY OUR MERCH!!!",
+        content: 'Its Pragyan, Get a merch Loser <a href="http://localhost:5173/Amazmom" target="_blank" class="text-blue-500 underline">here</a>',
+        starred: false,
+        read: false
+      }
+    ];
+    const updatedEmails = {
+      ...emails,
+      primary: [...extraEmails, ...emails.primary]
+    };
+    setEmails(updatedEmails);
+    localStorage.setItem("emails", JSON.stringify(updatedEmails));
+  };
+
+  useEffect(() => {
+    localStorage.setItem("emails", JSON.stringify(emails));
   }, [emails]);
 
   const handleEmailClick = (email) => {

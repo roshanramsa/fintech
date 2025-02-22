@@ -20,12 +20,12 @@ const DynamicPlaceholder = () => {
   const location = useLocation();
   
   const routePlaceholders = {
-    '/': 'https://ScamHolder.com/Home',
-    '/Amazmom': 'https://AmazmomDeals.com',
+    '/': 'https://Gmail.com/Login',
+    '/Amazmom': 'http://AmazmomDeals.com',
     '/Email': 'https://Gmale.com/YourInbox',
     '/login': 'https://Pragyan.com/SecureLogin',
-    '/FakeLogin': 'https://Prágyan.com/AccountVerification',
-    '/Romance': 'https://RomanticChat.com/MILF'
+    '/FakeLogin': 'http://Prágyan.com/AccountVerification',
+    '/Romance': 'http://RomanticChat.com/MILF'
   };
 
   return (
