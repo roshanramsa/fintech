@@ -3,6 +3,10 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Amazmom from './pages/Amazmom'
 import { objects } from './constants'
+import LoginPage from './pages/Login'
+import Email from './pages/Email'
+import ScamLoginPage from './pages/FakeLogin'
+import RomanceScamChatbot from './pages/Romance'
 
 const dialogues = [
   "Hello there!",
@@ -12,9 +16,29 @@ const dialogues = [
   "Click again to restart!"
 ];
 
+const DynamicPlaceholder = () => {
+  const location = useLocation();
+  
+  const routePlaceholders = {
+    '/': 'https://ScamHolder.com/Home',
+    '/Amazmom': 'https://AmazmomDeals.com',
+    '/Email': 'https://Gmale.com/YourInbox',
+    '/login': 'https://Pragyan.com/SecureLogin',
+    '/FakeLogin': 'https://Prágyan.com/AccountVerification',
+    '/Romance': 'https://RomanticChat.com/MILF'
+  };
+
+  return (
+    <input 
+      className='bg-pink-800 text-white rounded-2xl px-5 py-[5px] w-[80%] cursor-default' 
+      type="text" 
+      placeholder={routePlaceholders[location.pathname] || 'https://Pragyan.com/SecureLogin'}
+      readOnly
+    />
+  );
+};
 
 const App = () => {
-
   const [index, setIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
@@ -37,13 +61,23 @@ const App = () => {
     setCharIndex(0);
   }, [index]);
 
+  useEffect(() => {
+    let lives = localStorage.getItem("health"); 
+    if (lives < 1) {
+      localStorage.clear();
+      window.location.reload();
+      localStorage.setItem('health', 3)
+      location.href = "http://localhost:5173/email"
+    }
+  })
+
   const handleNextDialogue = () => {
     setFade(false); 
 
     setTimeout(() => {
       setIndex((prev) => (prev < dialogues.length - 1 ? prev + 1 : 0));
       if (index == dialogues.length - 1) {
-        setDialogue(false)
+        setDialogue(false)  
       }
       setFade(true);
     }, 500);
@@ -78,25 +112,16 @@ const App = () => {
                 <img className='rounded-full transition-all duration-200 hover:bg-pink-300 h-[30px]' src="src/assets/right.svg" alt="right" height={30} width={30}/>
                 <img className='rounded-full transition-all duration-200 hover:bg-pink-300 h-[30px] px-[2.5px]' src="src/assets/refresh.svg" alt="refresh" height={30} width={30}/>
               </div>
-              <input className='bg-pink-800 text-white rounded-2xl px-5 py-[5px] w-[80%] cursor-default' type="text" placeholder='https:/ScamHolder.com/Educational?True'/>
+              <DynamicPlaceholder />
             </div>
               <Routes>
                 <Route path='/' element={<Home />}/>
                 <Route path='/Amazmom' element={<Amazmom />}/>
+                <Route path='/Email' element={<Email />}/>
+                <Route path='/Login' element={<LoginPage />}/>
+                <Route path='/FakeLogin' element={<ScamLoginPage />}/>
+                <Route path='/Romance' element={<RomanceScamChatbot />}></Route>
               </Routes>
-              <div className="h-full w-full" onClick={(index < dialogues.length) ? handleNextDialogue : 0}>
-                <div className="flex h-full w-full justify-center">
-                  <div className={`h-[20%] w-[90%] bg-pink-100 rounded-2xl absolute bottom-0  ${dialogue ? "" : "hidden"}`}>
-                    <p
-                      className={`text-2xl font-poppins p-5 transition-opacity duration-200 ${
-                        fade ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      {displayText}
-                    </p>
-                  </div>
-                </div>
-              </div>
           </div>
         </div>
       </BrowserRouter>
