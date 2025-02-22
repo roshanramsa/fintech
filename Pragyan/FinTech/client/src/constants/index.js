@@ -1,1 +1,0 @@
-export const objects = ["src/assets/add.svg", "src/assets/close.svg", "src/assets/home.svg", "src/assets/search.svg"]
