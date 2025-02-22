@@ -45,7 +45,6 @@ function SignupPage() {
 
     const sendExtraEmails = () => {
         console.log("Sending extra security emails...");
-        // Simulate sending extra security messages
     };
 
     const handleSubmit = (e) => {

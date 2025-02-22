@@ -50,6 +50,7 @@ function SignupPage() {
 
     return (
         <div className="flex items-start justify-center h-screen bg-gradient-to-r from-pink-900 to-blue-900 bg-opacity-1">
+            <img className="w-70 absolute top-10 left-1.5" src="./src/assets/fakeprag(1).png" alt="" />
             <div className="relative z-10 mt-20 bg-gray-900 p-10 rounded-xl shadow-2xl w-96">
                 <h2 className="text-3xl font-extrabold text-center text-slate-200 mb-6">Join Pragyan '25</h2>
                 <form onSubmit={handleSubmit}>
@@ -74,7 +75,7 @@ function SignupPage() {
                         />
                     </div>
                     <div className="mb-5">
-                        <label className="block text-slate-50 font-medium">Password</label>
+                        <label className="block text-slate-50 font-medium">Pasword</label>
                         <input
                             type="password"
                             value={password}

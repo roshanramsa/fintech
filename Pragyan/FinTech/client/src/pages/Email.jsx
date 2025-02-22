@@ -80,7 +80,7 @@ function Email() {
     ];
     const updatedEmails = {
       ...emails,
-      primary: [...emails.primary, ...extraEmails]
+      primary: [...extraEmails, ...emails.primary]
     };
     setEmails(updatedEmails);
     localStorage.setItem("emails", JSON.stringify(updatedEmails));

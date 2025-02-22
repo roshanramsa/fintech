@@ -6,6 +6,7 @@ import { objects } from './constants'
 import LoginPage from './pages/Login'
 import Email from './pages/Email'
 import ScamLoginPage from './pages/FakeLogin'
+import RomanceScamChatbot from './pages/Romance'
 
 const dialogues = [
   "Hello there!",
@@ -39,6 +40,16 @@ const App = () => {
     setDisplayText("");
     setCharIndex(0);
   }, [index]);
+
+  useEffect(() => {
+    let lives = localStorage.getItem("health"); 
+    if (lives < 1) {
+      localStorage.clear();
+      window.location.reload();
+      localStorage.setItem('health', 3)
+      location.href = "http://localhost:5173/email"
+    }
+  })
 
   const handleNextDialogue = () => {
     setFade(false); 
@@ -89,6 +100,7 @@ const App = () => {
                 <Route path='/Email' element={<Email></Email>}/>
                 <Route path='/Login' element={<LoginPage></LoginPage>}/>
                 <Route path='/FakeLogin' element={<ScamLoginPage></ScamLoginPage>}/>
+                <Route path='/Romance' element={<RomanceScamChatbot></RomanceScamChatbot>}></Route>
               </Routes>
           </div>
         </div>
